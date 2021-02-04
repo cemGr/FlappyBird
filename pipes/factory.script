@@ -1,0 +1,52 @@
+local period = 6
+
+function init(self)
+	self.timer = period
+end
+
+function final(self)
+	-- Add finalization code here
+	-- Learn more: https://defold.com/manuals/script/
+	-- Remove this function if not needed
+end
+
+function update(self, dt)
+	self.timer = self.timer - dt		-- timer countdown
+
+	if self.timer <= 0 then
+
+		self.timer = period				-- reset timer
+
+		local p = go.get_position()		-- factory position at (0, 0, 0)
+		p.x = 760						-- new x 
+		p.y = vmath.lerp(math.random(), 625, 750)	-- new y
+
+		local component = "#factory"	-- the factory component
+		factory.create(component, p)	-- spwan the factory prototype at p
+
+	end			
+end
+
+function on_message(self, message_id, message, sender)
+	-- Add message-handling code here
+	-- Learn more: https://defold.com/manuals/message-passing/
+	-- Remove this function if not needed
+end
+
+function on_input(self, action_id, action)
+	-- Add input-handling code here. The game object this script is attached to
+	-- must have acquired input focus:
+	--
+	--    msg.post(".", "acquire_input_focus")
+	--
+	-- All mapped input bindings will be received. Mouse and touch input will
+	-- be received regardless of where on the screen it happened.
+	-- Learn more: https://defold.com/manuals/input/
+	-- Remove this function if not needed
+end
+
+function on_reload(self)
+	-- Add reload-handling code here
+	-- Learn more: https://defold.com/manuals/hot-reload/
+	-- Remove this function if not needed
+end

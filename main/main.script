@@ -1,0 +1,19 @@
+function init(self)
+	msg.post(".", "acquire_input_focus")
+	msg.post("@render:", "use_fixed_fit_projection", { near = -1, far = 1 })
+	sound.play("#sound", {delay = 1, gain = 0.5, pan = 0.0, speed = 1.25})
+end
+
+function on_input(self, action_id, action)
+	if action_id == hash("touch") and action.pressed then
+		print("Touch!")
+		msg.post(
+		"/bird",
+		"apply_force",
+		{
+			force = vmath.vector3(0, 40000, 0),
+			position = go.get_world_position("/bird")
+		}
+	)		
+	end
+end
